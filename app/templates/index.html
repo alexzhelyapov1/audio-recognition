@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Панель управления - Voice Recognition System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="fa-solid fa-microphone me-2"></i>Запись команды</h5>
+            </div>
+            <div class="card-body text-center py-5">
+                <div id="record-controls">
+                    <button id="start-record" class="btn btn-outline-danger btn-lg rounded-circle p-4 mb-3">
+                        <i class="fa-solid fa-microphone fa-2x"></i>
+                    </button>
+                    <p class="text-muted" id="record-status">Нажмите для начала записи</p>
+                    <button id="stop-record" class="btn btn-danger btn-lg d-none">
+                        <i class="fa-solid fa-stop me-2"></i>Остановить
+                    </button>
+                </div>
+                <div id="processing-status" class="d-none">
+                    <div class="spinner-border text-primary mb-2" role="status"></div>
+                    <p>Обработка аудио...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="fa-solid fa-list-check me-2"></i>Результат распознавания</h5>
+            </div>
+            <div class="card-body" id="result-container">
+                <div class="text-center text-muted py-5">
+                    <i class="fa-solid fa-wand-magic-sparkles fa-3x mb-3"></i>
+                    <p>Здесь появится результат после записи команды</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for confirmation/editing -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Подтверждение команды</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!-- Form will be injected here via JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
+{% endblock %}
